@@ -1,8 +1,6 @@
 input.onButtonPressed(Button.A, function on_button_pressed_a() {
     
-    let num2 = fib(i)
-    // basic.show_number(num2)
-    serial.writeLine(convertToText(num2))
+    serial.writeLine(convertToText(fib(i)))
     i += 1
 })
 function fib(num: number): number {
@@ -14,10 +12,15 @@ function fib(num: number): number {
     
 }
 
-let i = 1
-input.onButtonPressed(Button.B, function on_button_pressed_a2() {
+input.onButtonPressed(Button.B, function on_button_pressed_b() {
     control.reset()
 })
+let i = 0
+i = 1
 while (true) {
-    basic.pause(100)
+    if (input.logoIsPressed()) {
+        serial.writeLine(convertToText(fib(i)))
+    }
+    
+    basic.pause(1000)
 }
